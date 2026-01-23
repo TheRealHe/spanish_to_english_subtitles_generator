@@ -2,7 +2,7 @@ import os
 import subprocess
 import sys
 
-# Extrae audio de video
+# Extrae audio de video - Input is name of the video in folder /video
 
 def extract_audio(video_name):
 
@@ -10,7 +10,10 @@ def extract_audio(video_name):
 
     if not (os.path.exists(f"videos/{video_name}.mp4")):
 
+        print()
         print("❌ Video no encontrado")
+        input()
+        
         return None
 
     try:
@@ -31,11 +34,16 @@ def extract_audio(video_name):
 
 ], check = True, stdout = sys.stdout, stderr = sys.stderr) 
         
+        print()
         print(f"✅ Audio extraído: temp_{video_name}_audio.wav") # Confirmacion
+        input()
         
     # En caso de cualquier error, notifica cual es el error y finaliza funcion.
 
     except Exception as ae:
-
+            
+        print()
         print(f"❌ Error inesperado: {type(ae).__name__}: {ae}")
+        input()
+
         return None
