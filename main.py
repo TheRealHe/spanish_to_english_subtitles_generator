@@ -1,5 +1,6 @@
 from modules import ffmpeg_handler as fh
 from modules import youtube_downloader as yd
+from modules import whisper as w
 
 broker = True
 
@@ -12,6 +13,7 @@ while broker:
                    
 1. Download Video from YouTube.
 2. Create and insert Spanish to English subtitles from video.
+3. More options
 0. closing the program. 
 """)
     
@@ -30,7 +32,11 @@ Enter the URL of the video to download: """)
         name = input("""
 Enter the name of the video file: """)
 
-        fh.extract_audio(name)
+        name = fh.extract_audio(name)
+
+        if name != None:
+
+            input(w.generate_spanish_subtitles(name))
     
     elif option == "0":
 
@@ -40,3 +46,4 @@ Enter the name of the video file: """)
 
         print("")
         print("Enter a correct value (0-2)")
+        input()

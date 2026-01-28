@@ -38,6 +38,8 @@ def extract_audio(video_name):
         print(f"✅ Audio extraído: temp_{video_name}_audio.wav") # Confirmacion
         input()
         
+        return video_name
+
     # En caso de cualquier error, notifica cual es el error y finaliza funcion.
 
     except Exception as ae:
