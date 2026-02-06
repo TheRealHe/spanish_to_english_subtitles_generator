@@ -42,7 +42,9 @@ def download_youtube(url, name):
 
     except Exception as ae:
 
-        print(f"❌ Error inesperado: {type(ae).__name__}: {ae}")
+        print()
+        print(f"❌ Error: {type(ae).__name__}: {ae}")
+        input()
         
         return None
 

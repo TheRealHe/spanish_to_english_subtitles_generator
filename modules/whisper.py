@@ -9,7 +9,7 @@ def generate_spanish_subtitles(audio_name):
     if not (os.path.exists(f"temp_{audio_name}_audio.wav")):
 
         print()
-        print("❌ Video no encontrado")
+        print("Video not found")
         input()
         
         return None
@@ -55,7 +55,9 @@ def generate_spanish_subtitles(audio_name):
 
     except Exception as ae:
 
-        print(f"❌ Error inesperado: {type(ae).__name__}: {ae}")
+        print()
+        print(f"❌ Error: {type(ae).__name__}: {ae}")
+        input()
 
         return None
 
