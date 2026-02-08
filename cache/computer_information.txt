@@ -1,1 +1,2 @@
-nvidia
+PYTHON_VERSION: 3.11
+GPU: nvidia

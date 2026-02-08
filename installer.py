@@ -17,7 +17,7 @@ def Chocolatey_Install():
         
         check = subprocess.run(
             
-        ["where", "choco"], 
+        ["choco", "-v"], 
         capture_output = True, 
         text = True, 
         timeout = 5
@@ -25,12 +25,19 @@ def Chocolatey_Install():
         ) 
         
         if check.returncode == 0:
-            
+       
             print("Chocolatey already installed")
             print((check.stdout.split('\n'))[0])
             print()
-        
+            
         else:
+                    
+            error = check.stdout[:300] if check.stdout else "unknown error"
+                    
+            print(f"Chocolatey could not be installed. Error: {error}...")
+            print()
+        
+    except FileNotFoundError:
         
         # Installing Chocolatey with winget
         
@@ -270,10 +277,8 @@ admin_permises()
 # Checks that the current python running the program is a compatible version
 
 print("Python Check")
-print()
 
 print(f"Python version is: {sys.version}")
-print()
 
 if (sys.version_info.major == 3) and (8 <= sys.version_info.minor <= 11):
 
@@ -486,7 +491,7 @@ except ImportError:
     
         check = subprocess.run(
         
-            ["py", "-m", "pip", "install", "yt-dlp"],
+            [sys.executable, "-m", "pip", "install", "yt-dlp"],
             capture_output = True,
             text = True,
             timeout = 300,
@@ -539,7 +544,7 @@ except ImportError:
     
         whispe = subprocess.run(
         
-            ["py", "-m", "pip", "install", "openai-whisper"],
+            [sys.executable, "-m", "pip", "install", "openai-whisper"],
             capture_output = True,
             text = True,
             timeout = 300,
@@ -608,7 +613,7 @@ if gpu == "nvidia":
             
             check = subprocess.run(
                 
-                ["py", "-m", "pip", "install", "torch", "torchvision", "torchaudio", "--index-url", "https://download.pytorch.org/whl/cu118"],
+                [sys.executable, "-m", "pip", "install", "torch", "torchvision", "torchaudio", "--index-url", "https://download.pytorch.org/whl/cu118"],
                 capture_output = True,
                 text = True,
                 timeout = 1200
@@ -678,7 +683,7 @@ elif gpu == "amd":
             
             check = subprocess.run(
                 
-                ["py", "-m", "pip", "install", "torch-directml"],
+                [sys.executable, "-m", "pip", "install", "torch-directml"],
                 capture_output=True,
                 text=True,
                 timeout=1200 
@@ -729,7 +734,7 @@ else:
         
             check = subprocess.run(
                     
-                    ["py", "-m", "pip", "install", "torch", "torchvision", "torchaudio"],
+                    [sys.executable, "-m", "pip", "install", "torch", "torchvision", "torchaudio"],
                     capture_output = True,
                     text = True,
                     timeout = 1200
